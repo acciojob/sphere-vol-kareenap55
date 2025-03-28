@@ -1,35 +1,25 @@
 function volume_sphere() {
-    //Write your code here
-	function volume_sphere() {
-    // Get the input value
-    let radiusInput = document.getElementById("radius").value;
-    let volumeOutput = document.getElementById("volume");
-
-    // Convert input to a number
-    let radius = parseFloat(radiusInput);
-
-    // Validate input (should be a non-negative number)
-    if (isNaN(radius) || radius < 0) {
-        volumeOutput.value = 'NaN';
+    // Get the radius value from the input field
+    let radius = document.getElementById("radius").value;
+    let volumeField = document.getElementById("volume");
+    
+    // Convert the input to a number
+    let r = parseFloat(radius);
+    
+    // Validate the input: should be a non-negative number
+    if (isNaN(r) || r < 0) {
+        volumeField.value = 'NaN';
         return;
     }
-
-    // Calculate the volume of the sphere
-    let volume = (4 / 3) * Math.PI * Math.pow(radius, 3);
-
-    // Round to four decimal places
-    volumeOutput.value = volume.toFixed(4);
+    
+    // Calculate the volume using the formula V = (4/3) * π * r^3
+    let volume = (4 / 3) * Math.PI * Math.pow(r, 3);
+    
+    // Round the result to 4 decimal places
+    volumeField.value = volume.toFixed(4);
 }
 
-// Attach the function to the form submission event
-window.onload = function() {
-    document.getElementById("MyForm").onsubmit = function(event) {
-        event.preventDefault(); // Prevent form from refreshing the page
-        volume_sphere();
-    };
+document.getElementById("MyForm").onsubmit = function(event) {
+    event.preventDefault(); // Prevent form submission
+    volume_sphere();
 };
-
-  
-} 
-
-window.onload = document.getElementById('MyForm').onsubmit = volume_sphere;
